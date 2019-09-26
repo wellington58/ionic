@@ -18,6 +18,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'addUsuario',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/add-usuario/add-usuario.module').then(m => m.AddUsuarioPageModule)
+          }
+        ]
+      },
+      {
         path: 'tab2',
         children: [
           {
