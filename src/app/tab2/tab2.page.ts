@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from '../services/usuario.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,25 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  protected usuarios: any
+  
 
+  constructor(
+    protected usuarioService:UsuarioService,
+    public loadingController: LoadingController
+  ) {
+    this.usuarios = this.usuarioService.getAll();
+  }
+
+  async doRefresh(event) {
+    console.log('Begin async operation')
+    this.usuarios = await this.usuarioService.getAll();
+    
+        setTimeout(() => {
+          console.log('Async operation has ended');
+          event.target.complete();
+        }, 500);
+  }
+
+  
 }

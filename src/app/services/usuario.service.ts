@@ -13,4 +13,8 @@ export class UsuarioService {
   save(usuario){
     return this.fire.list("usuarios").push(usuario);
   }
+
+  getAll(){
+    return this.fire.list("usuarios").valueChanges();
+  }
 }
