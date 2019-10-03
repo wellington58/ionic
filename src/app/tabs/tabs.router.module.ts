@@ -28,12 +28,22 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'addUsuario/:id',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../pages/add-usuario/add-usuario.module').then(m => m.AddUsuarioPageModule)
+          }
+        ]
+      },
+      {
+        path: 'listUsuario',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/list-usuario/list-usuario.module').then(m => m.ListUsuarioPageModule)
           }
         ]
       },
