@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>add-entrega</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form #fc="ngForm" (ngSubmit)="onsubmit(fc)">
+  <ion-item>
+    <ion-label position="floating">Produto</ion-label>
+    <ion-input type="text" [(ngModel)]="entrega.produto" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descricao</ion-label>
+    <ion-input type="text" [(ngModel)]="entrega.descricao" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Peso</ion-label>
+    <ion-input type="number" [(ngModel)]="entrega.peso" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Largura</ion-label>
+    <ion-input type="number" [(ngModel)]="entrega.largura" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Altura</ion-label>
+    <ion-input type="number" [(ngModel)]="entrega.altura" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Comprimento</ion-label>
+    <ion-input type="number" [(ngModel)]="entrega.comprimento" name="nome" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Quantidade</ion-label>
+    <ion-input type="number" [(ngModel)]="entrega.quant" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Valor</ion-label>
+    <ion-input type="number" [(ngModel)]="entrega.valor" name="nome" required></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-button type="submit" [disabled]="fc.invalid">Salvar</ion-button>
+    <ion-button type="reset" color="danger">Cancelar</ion-button>
+  </ion-item>
+
+</form> 
+</ion-content>

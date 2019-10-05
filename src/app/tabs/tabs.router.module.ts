@@ -58,6 +58,16 @@ const routes: Routes = [
         ]
       },
       {
+      path: 'addEntrega',
+      children: [
+        {
+          path: '',
+          loadChildren: () =>
+            import('../pages/add-entrega/add-entrega.module').then(m => m.AddEntregaPageModule)
+        }
+      ]
+    },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

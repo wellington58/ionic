@@ -6,4 +6,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" routerLink="/tabs/addEntrega">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-list *ngIf="entregas | async as users">
+    <ion-item-sliding *ngFor="let u of users">
+        <ion-item-options side="start">
+          <ion-item-option color="" (click)="editar(u.key)" expandable>
+            Atualizar
+          </ion-item-option>
+        </ion-item-options>
+    
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>{{u.produto}} - {{u.descricao}}</ion-label>
+      <ion-note>{{u.key}}</ion-note>
+    </ion-item>
+  
+        <ion-item-options side="end">
+          <ion-item-option color="danger" expandable>
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

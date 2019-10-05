@@ -37,4 +37,5 @@ export class UsuarioService {
   update(usuario, id){
     return this.fire.object("usurios/"+id).update(usuario);
   }
+  
 }
