@@ -11,29 +11,29 @@ import { Router } from '@angular/router';
 export class ListUsuarioPage implements OnInit {
 
   protected usuarios: any
-    
-  constructor(
-    protected usuarioService:UsuarioService,
-    public loadingController: LoadingController,
-    protected router:Router
-    ) { }
-    
-    ngOnInit() {
-      this.usuarios = this.usuarioService.getAll();
-    }
-    
-    editar(key) {
-      this.router.navigate(['../tabs/addUsuario', key])
-    }
 
-    async doRefresh(event) {
+  constructor(
+    protected usuarioService: UsuarioService,
+    public loadingController: LoadingController,
+    protected router: Router
+  ) { }
+
+  ngOnInit() {
+    this.usuarios = this.usuarioService.getAll();
+  }
+
+  editar(key) {
+    this.router.navigate(['../tabs/addUsuario', key])
+  }
+
+  async doRefresh(event) {
     console.log('Begin async operation')
     this.usuarios = await this.usuarioService.getAll();
-    
-        setTimeout(() => {
-          console.log('Async operation has ended');
-          event.target.complete();
-        }, 500);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 500);
   }
 
 }

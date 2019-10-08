@@ -34,8 +34,8 @@ export class EntregaService {
     return this.fire.object("entregas/"+ id).remove();
   }
 
-  update(id){
-    return this.fire.object("entregas/"+id)
+  update(entrega, id){
+    return this.fire.object("entregas/"+id).update(entrega)
   }
 
 }

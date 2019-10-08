@@ -8,6 +8,7 @@ const routes: Routes = [
   },
   { path: 'list-usuario', loadChildren: './pages/list-usuario/list-usuario.module#ListUsuarioPageModule' },
   { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   //{ path: 'entrega', loadChildren: './pages/entrega/entrega.module#EntregaPageModule' },
   //{ path: 'add-entrega', loadChildren: './pages/add-entrega/add-entrega.module#AddEntregaPageModule' },
  // { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' }

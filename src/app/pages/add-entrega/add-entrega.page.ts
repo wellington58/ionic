@@ -36,7 +36,7 @@ export class AddEntregaPage implements OnInit {
 
   onsubmit(form){
     if(this.id){
-      this.entregaService.update(this.entrega,this.id).then(
+      this.entregaService.update(this.entrega, this.id).then(
         res=>{
           console.log("Atualizado");
           this.presentAlert("aviso", "Atualizado com sucesso!")

@@ -1,9 +1,23 @@
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>perfil-usuario</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+    <ion-toolbar>
+      <ion-title>Perfil do Usuario</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label>Nome: {{usuario.nome}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>E-mail: {{usuario.email}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Telefone: {{usuario.tel}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Senha: {{usuario.pws}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>

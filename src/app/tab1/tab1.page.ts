@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { EntregaService } from '../services/entrega.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,18 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  protected entregas: any
 
+  constructor(
+    protected entregaService: EntregaService,
+    protected router:Router
+  ) {}
+
+  ngOnInit() {
+    this.entregas = this.entregaService.getAll();
+  }
+
+  perfil(key) {
+    this.router.navigate(['../tabs/perfil', key])
+  }
 }
