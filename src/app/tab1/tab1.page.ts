@@ -17,7 +17,11 @@ export class Tab1Page {
   ) {}
 
   ngOnInit() {
-    this.entregas = this.entregaService.getAll();
+    this.entregas = this.entregaService.getAll().subscribe(
+      res=>{
+        this.entregas = res
+      }
+    )
   }
 
   perfil(key) {

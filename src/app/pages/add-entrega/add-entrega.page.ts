@@ -21,7 +21,10 @@ export class AddEntregaPage implements OnInit {
     protected activedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+  
+  //funçao chamada toda vez que a pagina recebe foco;
+  ionViewWillEnter(){
     this.id = this.activedRoute.snapshot.paramMap.get("id");
     if(this.id){
       this.entregaService.get(this.id).subscribe(
@@ -29,9 +32,10 @@ export class AddEntregaPage implements OnInit {
           this.entrega = res
         },
         erro=> this.id = null
-
+  
       )
     }
+    
   }
 
   onsubmit(form){

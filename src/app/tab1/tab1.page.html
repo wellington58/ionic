@@ -10,8 +10,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="entregas | async as users">
-    <ion-card *ngFor="let u of users" routerLink="../tabs/perfil/id">
+  <ion-list *ngIf="entregas">
+    <ion-card *ngFor="let u of entregas" [routerLink]="['/tabs/perfilEntrega/',u.key]">
+      <!-- <img src="/assents/shapes.svg" alt=""/> -->
       <ion-card-header>
         <ion-card-subtitle>{{u.valor}}</ion-card-subtitle>
         <ion-card-title  >{{u.produto}}</ion-card-title>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Lista de Entregas
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
           </ion-item-option>
         </ion-item-options>
     
-    <ion-item>
+    <ion-item routerLink="['']">
       <ion-avatar slot="start">
         <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
       </ion-avatar>
@@ -29,7 +29,7 @@
     </ion-item>
   
         <ion-item-options side="end">
-          <ion-item-option color="danger" expandable>
+          <ion-item-option color="danger" expandable (click)="remover(u.key)">
             Delete
           </ion-item-option>
         </ion-item-options>

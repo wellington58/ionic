@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,8 @@ export class ListUsuarioPage implements OnInit {
   constructor(
     protected usuarioService: UsuarioService,
     public loadingController: LoadingController,
-    protected router: Router
+    protected router: Router,
+    protected alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -24,6 +25,30 @@ export class ListUsuarioPage implements OnInit {
 
   editar(key) {
     this.router.navigate(['../tabs/addUsuario', key])
+  }
+
+  async remover(key) {
+    const alert = await this.alertController.create({
+      header: 'deletar',
+      message: 'Tem certeza que deseja deletar os dados?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Apagar',
+          handler: () => {
+            this.usuarioService.remover(key);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async doRefresh(event) {
