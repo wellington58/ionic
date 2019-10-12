@@ -17,7 +17,7 @@ export class Tab1Page {
   ) {}
 
   ngOnInit() {
-    this.entregas = this.entregaService.getAll().subscribe(
+   this.entregaService.getAll().subscribe(
       res=>{
         this.entregas = res
       }

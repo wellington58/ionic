@@ -28,5 +28,4 @@ export class PerfilUsuarioPage implements OnInit {
       )
     }
   }
-
 }

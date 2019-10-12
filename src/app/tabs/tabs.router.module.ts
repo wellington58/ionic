@@ -48,6 +48,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'PerfilUsuario/:id',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/perfil-usuario/perfil-usuario.module').then(m => m.PerfilUsuarioPageModule)
+          }
+        ]
+      },
+      {
         path: 'tab3',
         children: [
           {

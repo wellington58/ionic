@@ -17,11 +17,17 @@
       <ion-input type="password" name="pws" [(ngModel)]="senha"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <section>
       <ion-button type="submit" expand="block" [disabled]="fc.invalid">Salvar</ion-button>
       <ion-button type="reset" expand="block" color="danger">Cancelar</ion-button>
-    </ion-item>
+    </section>
 
+    <section>
+      <ion-button expand="block" [disabled]="fc.invalid" (click)="loginWEB()">Entrar com o Google</ion-button>
+    </section>
+    <section>
+      <ion-button expand="block" color="danger"(click)="logout()">Sair</ion-button>
+    </section>
 
   </form>
 </ion-content>
