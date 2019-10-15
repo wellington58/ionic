@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { MensagemService } from 'src/app/services/mensagem.service';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,40 +13,54 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 })
 export class LoginPage implements OnInit {
 
-  protected email:string;
-  protected senha:string;
+  protected email: string;
+  protected senha: string;
 
   constructor(public afAuth: AngularFireAuth,
-    protected router:Router,
-    protected msg:MensagemService,
-    ) { }
+    protected router: Router,
+    protected msg: MensagemService,
+    private googlePlus: GooglePlus,
+    private platform: Platform
+  ) { }
 
   ngOnInit() {
   }
 
-  onsubmit(form){
+  onsubmit(form) {
     this.login()
   }
 
-  login(){
+  login() {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
-      res=>{
+      res => {
         console.log(res);
         this.router.navigate(["/"])
       },
-      erro=>{
+      erro => {
         console.log(erro);
-        
-        this.msg.presentAlert("erro","E-mail e/ou senha invalida!")
+
+        this.msg.presentAlert("erro", "E-mail e/ou senha invalida!")
       }
     )
   }
 
   loginWEB() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    if (this.platform.is("cordova")) {
+      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    }else{
+      this.loginGooglePlus()
+    }
   }
   logout() {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut()
+    if(!this.platform.is("cordova")){
+      this.googlePlus.logout();
+    }
   }
 
+  loginGooglePlus() {
+    this.googlePlus.login({})
+      .then(res => console.log(res))
+      .catch(err => console.error(err));
+  }
 }

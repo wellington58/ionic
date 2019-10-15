@@ -8,6 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera, } from '@ionic-native/camera/ngx';
 
 //firebase -----------------
 import { AngularFireModule } from '@angular/fire';
@@ -26,7 +29,10 @@ import {AngularFireAuthModule } from '@angular/fire/auth';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    GooglePlus,
+    Geolocation,
+    Camera
   ],
   bootstrap: [AppComponent]
 })
