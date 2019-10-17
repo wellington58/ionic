@@ -91,7 +91,7 @@ export class AddUsuarioPage implements OnInit {
 
   tirarFoto() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE

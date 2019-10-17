@@ -19,12 +19,14 @@
 
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="usuario.email" name="email" required></ion-input>
+      <ion-input type="email" [(ngModel)]="usuario.email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  #e="ngModel"></ion-input>
     </ion-item>
+    <ion-text color="danger" *ngIf="e.invalid && e.dirty">E-mail invalido!</ion-text>
+
 
     <ion-item>
       <ion-label position="floating">Telefone</ion-label>
-      <ion-input type="tel" [(ngModel)]="usuario.tel" name="tel" required></ion-input>
+      <ion-input type="tel" [(ngModel)]="usuario.tel" name="tel" ControlName="mask" brmasker="{phone:true}" required></ion-input>
     </ion-item>
 
     <ion-item>

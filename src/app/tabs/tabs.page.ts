@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { EntregaService } from '../services/entrega.service';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,7 +9,25 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  protected quantEntrega:number = 0;
+  protected quantUsuario:number = 0;
+
+  constructor(
+    protected entregaService:EntregaService,
+    protected usuarioService:UsuarioService
+  ) {
+    this.entregaService.getAll().subscribe(
+      res=>{
+        this.quantEntrega = res.length
+      }
+    )
+
+    this.usuarioService.getAll().subscribe(
+      res=>{
+        this.quantUsuario = res.length
+      }
+    )
+  }
 
   ngOnInit() {}
 

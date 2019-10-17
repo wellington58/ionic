@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
       <ion-title>
-        Tab Two
+        Usuarios Cadastrados
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -21,7 +21,7 @@
             </ion-item-option>
           </ion-item-options>
       
-      <ion-item routerLink="['/tabs/PerfilUsuario/',u.key]">
+      <ion-item [routerLink]="['/tabs/PerfilUsuario/',u.key]">
         <ion-avatar slot="start">
           <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
         </ion-avatar>
