@@ -6,23 +6,16 @@
 
 <ion-content>
 
-    <ion-item lines="none">
+    <ion-item lines="none" >
         <img src="assets/perfil.png" (click)="tirarFoto()" *ngIf="!preview">
         <img [src]="preview" (click)="tirarFoto()" *ngIf="preview">
     </ion-item>
-    <ion-item lines="none">
+
       <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
-          <h1>Slide 1</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 3</h1>
-        </ion-slide>
+          <ion-slide  *ngFor="let f of preview">
+            <img src="{{f}}">
+            </ion-slide>
       </ion-slides>
-    </ion-item>
 
 <form #fc="ngForm" (ngSubmit)="onsubmit(fc)">
   <ion-item>

@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, } from '@ionic-native/camera/ngx';
-import { BrMaskerModule } from 'br-mask';
+
 
 //firebase -----------------
 import { AngularFireModule } from '@angular/fire';
@@ -26,7 +26,7 @@ import {AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    BrMaskerModule,
+
   ],
   providers: [
     StatusBar,

@@ -15,11 +15,18 @@ export class AddEntregaPage implements OnInit {
 
   protected entrega: Entrega = new Entrega
   protected id: string = null
-  protected preview: string = null;
+  protected preview: string[];
   protected slideOpts = {
     initialSlide: 1,
-    speed: 400
-  };
+    speed: 400,
+    slidesPerView: 3,
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true,
+  }};
   
 
  
@@ -50,6 +57,7 @@ export class AddEntregaPage implements OnInit {
   }
 
   onsubmit(form){
+    this.entrega.fotos = this.preview;
     if(this.id){
       this.entregaService.update(this.entrega, this.id).then(
         res=>{
@@ -97,7 +105,9 @@ export class AddEntregaPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.preview = base64Image;
+      if(!this.preview){
+        this.preview = []};
+      this.preview.push(base64Image);
     }, (err) => {
       // Handle error
     });

@@ -8,5 +8,6 @@ export class Entrega {
     comprimento: number;
     quant: number;
     valor: number;
+    fotos:string[]= [];
     ativo: boolean = true;
 }
