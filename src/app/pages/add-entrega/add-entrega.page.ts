@@ -15,7 +15,7 @@ export class AddEntregaPage implements OnInit {
 
   protected entrega: Entrega = new Entrega
   protected id: string = null
-  protected preview: string[];
+  protected preview: string[]=null;
   protected slideOpts = {
     initialSlide: 1,
     speed: 400,
@@ -112,6 +112,36 @@ export class AddEntregaPage implements OnInit {
       // Handle error
     });
   }
+
+  limparForm(form) {
+    this.preview = null;
+    form.reset()
+  }
+
+  async removerFoto(index){
+
+    const alert = await this.alertController.create({
+      header: 'Apagar',
+      message: 'Tem certeza que deseja deletar a foto?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Confirmar',
+          handler: () => {
+            this.preview.splice(index,1)
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  
   
 
   async presentAlert(titulo:string, texto:string) {

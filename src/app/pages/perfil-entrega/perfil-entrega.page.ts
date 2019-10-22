@@ -12,6 +12,11 @@ export class PerfilEntregaPage implements OnInit {
 
   protected entrega: Entrega = new Entrega;
   protected id: string = null;
+  protected slideOpts = {
+    initialSlide: 1,
+    speed: 400,
+    slidesPerView: 1,
+  }
 
   constructor(
     protected entregaService: EntregaService,

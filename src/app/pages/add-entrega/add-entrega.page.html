@@ -8,12 +8,12 @@
 
     <ion-item lines="none" >
         <img src="assets/perfil.png" (click)="tirarFoto()" *ngIf="!preview">
-        <img [src]="preview" (click)="tirarFoto()" *ngIf="preview">
+        <img [src]="preview[preview.length-1]" (click)="tirarFoto()" *ngIf="preview">
     </ion-item>
 
       <ion-slides pager="true" [options]="slideOpts">
-          <ion-slide  *ngFor="let f of preview">
-            <img src="{{f}}">
+          <ion-slide  *ngFor="let f of preview; let i = index">
+            <img src="{{f}}" (click)="removerFoto(i)">
             </ion-slide>
       </ion-slides>
 
