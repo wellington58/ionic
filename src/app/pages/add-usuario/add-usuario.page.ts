@@ -5,6 +5,10 @@ import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import {
+  GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions,
+  CameraPosition, MarkerOptions, Marker,  Environment
+} from '@ionic-native/google-maps';
 
 
 
@@ -18,6 +22,7 @@ export class AddUsuarioPage implements OnInit {
   protected usuario: Usuario = new Usuario
   protected id: string = null;
   protected preview: string = null;
+  protected map: GoogleMap;
 
   constructor(
     protected usuarioService: UsuarioService,
@@ -28,7 +33,12 @@ export class AddUsuarioPage implements OnInit {
     private camera: Camera,
   ) { }
 
+
+  ionViewDidLoad() {
+  }
+  
   ngOnInit() {
+    this.loadMap();
     this.localAtual();
     this.id = this.activedRoute.snapshot.paramMap.get("id");
     if (this.id) {
@@ -92,7 +102,7 @@ export class AddUsuarioPage implements OnInit {
   tirarFoto() {
     const options: CameraOptions = {
       quality: 50,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -116,5 +126,34 @@ export class AddUsuarioPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  loadMap() {
+
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         target: {
+           lat: this.usuario.lat,
+           lng: this.usuario.lng
+         },
+         zoom: 18,
+         tilt: 30
+       }
+    };
+
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+
+    let marker: Marker = this.map.addMarkerSync({
+      title: 'Ionic',
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: this.usuario.lat,
+        lng: this.usuario.lng
+      }
+    });
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('clicked');
+    });
   }
 }
