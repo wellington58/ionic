@@ -38,7 +38,7 @@ export class AddUsuarioPage implements OnInit {
   }
   
   ngOnInit() {
-    this.loadMap();
+   // this.loadMap();
     this.localAtual();
     this.id = this.activedRoute.snapshot.paramMap.get("id");
     if (this.id) {
@@ -94,6 +94,7 @@ export class AddUsuarioPage implements OnInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.usuario.lat = resp.coords.latitude
       this.usuario.lng = resp.coords.longitude
+      this.loadMap();
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -155,5 +156,14 @@ export class AddUsuarioPage implements OnInit {
     marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
       alert('clicked');
     });
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(() =>{
+      res=>{
+        console.log(res);
+        marker.setPosition(res[0]);
+        this.usuario.lat = res[0].lat;
+        this.usuario.lng = res[0].lng;
+        
+      }
+    })
   }
 }
