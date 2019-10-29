@@ -141,7 +141,6 @@ export class AddUsuarioPage implements OnInit {
          tilt: 30
        }
     };
-
     this.map = GoogleMaps.create('map_canvas', mapOptions);
 
     let marker: Marker = this.map.addMarkerSync({
@@ -156,7 +155,7 @@ export class AddUsuarioPage implements OnInit {
     marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
       alert('clicked');
     });
-    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(() =>{
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
       res=>{
         console.log(res);
         marker.setPosition(res[0]);
@@ -164,6 +163,6 @@ export class AddUsuarioPage implements OnInit {
         this.usuario.lng = res[0].lng;
         
       }
-    })
+    )
   }
 }

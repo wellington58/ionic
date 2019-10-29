@@ -4,6 +4,9 @@ import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EntregaService } from 'src/app/services/entrega.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions,
+  CameraPosition, MarkerOptions, Marker,  Environment } from '@ionic-native/google-maps';
 
 
 @Component({
@@ -16,6 +19,7 @@ export class AddEntregaPage implements OnInit {
   protected entrega: Entrega = new Entrega
   protected id: string = null
   protected preview: string[]=null;
+  protected map: GoogleMap
   protected slideOpts = {
     initialSlide: 1,
     speed: 400,
@@ -35,11 +39,15 @@ export class AddEntregaPage implements OnInit {
     protected router:Router,
     protected alertController: AlertController,
     protected activedRoute: ActivatedRoute,
+    private geolocation: Geolocation,
     private camera: Camera,
 
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.localAtual();
+    
+   }
   
   //funçao chamada toda vez que a pagina recebe foco;
   ionViewWillEnter(){
@@ -93,6 +101,16 @@ export class AddEntregaPage implements OnInit {
     }
   }
 
+  localAtual() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.entrega.lat = resp.coords.latitude
+      this.entrega.lng = resp.coords.longitude
+      this.loadMap();
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
   tirarFoto() {
     const options: CameraOptions = {
       quality: 50,
@@ -113,9 +131,47 @@ export class AddEntregaPage implements OnInit {
     });
   }
 
-  limparForm(form) {
+ /* limparForm(form) {
     this.preview = null;
     form.reset()
+  }*/
+
+
+  loadMap() {
+
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         target: {
+           lat: this.entrega.lat,
+           lng: this.entrega.lng
+         },
+         zoom: 18,
+         tilt: 30
+       }
+    };
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+
+    let marker: Marker = this.map.addMarkerSync({
+      title: 'Ionic',
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: this.entrega.lat,
+        lng: this.entrega.lng
+      }
+    });
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('clicked');
+    });
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
+      res=>{
+        console.log(res);
+        marker.setPosition(res[0]);
+        this.entrega.lat = res[0].lat;
+        this.entrega.lng = res[0].lng;
+        
+      }
+    )
   }
 
   async removerFoto(index){

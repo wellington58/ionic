@@ -10,4 +10,6 @@ export class Entrega {
     valor: number;
     fotos:string[]= [];
     ativo: boolean = true;
+    lat:number;
+    lng:number;
 }
